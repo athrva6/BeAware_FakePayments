@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Be Aware – Spot Fake Payments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f9f6f4;
+      --card: #ffffff;
+      --accent: linear-gradient(135deg,#a78beb,#f76e64);
+      --text: #333;
+      --cta: #f76e64;
+    }
+    body {
+      background: var(--bg);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      margin: 0;
+    }
+    html { scroll-behavior: smooth; }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background: var(--card);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    nav a {
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      background: var(--bg);
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: var(--accent);
+      color: white;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.4rem; margin-bottom: 2rem; }
+    .hero .btn {
+      padding: 0.8rem 2rem;
+      background: white;
+      color: var(--cta);
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .hero .btn:hover { transform: scale(1.05); }
+
+    section {
+      max-width: 960px;
+      margin: auto;
+      padding: 3rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      background: var(--accent);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:before {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: -50px;
+      width: 100px; height: 100px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.3;
+      transition: bottom 0.5s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .card:hover:before { bottom: -10px; }
+    .card strong {
+      display:block;
+      margin-top:1rem;
+      font-size:1.2rem;
+      color: var(--text);
+    }
+
+    ul {
+      background: var(--card);
+      border-radius:12px;
+      padding:1.5rem;
+      box-shadow:0 4px 8px rgba(0,0,0,0.05);
+      list-style: disc inside;
+      line-height:1.6;
+    }
+
+    .compare {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .compare .card {
+      width: 350px;
+      padding: 1.5rem;
+    }
+    .compare .real { border-left: 6px solid green; }
+    .compare .fake { border-left: 6px solid #f76e64; }
+
+    .warning {
+      color: #e74c3c;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+
+    #fakeImage, #realImage {
+      display: none;
+      margin-top: 10px;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    button.btn-small {
+      background-color: #e6617e;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button.btn-small:hover {
+      background-color: #c94a68;
+    }
+
+    footer {
+      text-align:center;
+      padding:2rem 1rem;
+      background: var(--card);
+      color: var(--text);
+      font-size:0.85rem;
+      box-shadow:0 -2px 4px rgba(0,0,0,0.1);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    @media(max-width:600px){
+      .hero h1 { font-size:2.2rem; }
+      .compare .card { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#frauds">Frauds</a>
+    <a href="#tips">Tips</a>
+    <a href="#compare">Compare</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero" id="home">
+    <h1>Be Aware: Spot Fake Payments</h1>
+    <p>Stay vigilant. Spot red flags. Trust your money.</p>
+    <a href="#frauds" class="btn">Get Started</a>
+  </section>
+
+  <section id="frauds">
+    <h2>⚠ Common Payment Frauds</h2>
+    <div class="cards">
+      <div class="card">📸<strong>Fake UPI Screenshots</strong>Looks real but no alert or money.</div>
+      <div class="card">🧾<strong>QR Code Scam</strong>You scan thinking you'll receive—you're charged.</div>
+      <div class="card">📩<strong>Phishing Messages</strong>Fake messages mimic banks to steal credentials.</div>
+      <div class="card">💸<strong>Refund Scams</strong>Asked to pay first for fake refund.</div>
+    </div>
+  </section>
+
+  <section id="tips">
+    <h2>✅ Safety Tips to Protect Yourself</h2>
+    <ul>
+      <li>Never trust payment screenshots—check your actual account alert.</li>
+      <li>Don’t scan QR codes from strangers.</li>
+      <li>Verify UPI ID before sending or accepting.</li>
+      <li>Use official apps: Google Pay, PhonePe, Paytm.</li>
+      <li>Enable transaction alerts on SMS/email.</li>
+    </ul>
+  </section>
+
+  <section id="compare">
+    <h2>🔍 Real vs Fake Proof</h2>
+    <div class="compare">
+      <div class="card real">
+        <h3>Real Payment:</h3>
+        <p>Transaction ID, time stamp, bank SMS—all match.</p>
+        <button class="btn-small" onclick="toggleRealImage()">Show Example</button>
+        <img id="realImage" src="image/real.jpeg" alt="Real Payment Screenshot Example">
+      </div>
+
+      <div class="card fake">
+        <h3>Fake Screenshot:</h3>
+        <p>Edited image only. No balance update or alert.</p>
+        <button class="btn-small" onclick="toggleImage()">Show Example</button>
+        <img id="fakeImage" src="image/fake.jpeg" alt="Fake Payment Screenshot Example">
+        <p class="warning">⚠️ Always verify the payment in your UPI app or bank statement. Screenshots can be faked!</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>📩 Reach Out</h2>
+    <p>Have scam details or questions? Email us!</p>
+    <a href="https://cybercrime.gov.in/" class="btn">Contact Support</a>
+    <p>Call Cyber Crime Helpline: <strong>1930</strong></p>
+  </section>
+
+  <footer>
+    © 2025 Be Aware – Spot Fake Payments | Designed with clarity & care.
+  </footer>
+
+  <script>
+    let isFakeVisible = false;
+    let isRealVisible = false;
+
+    function toggleImage() {
+      const img = document.getElementById('fakeImage');
+      isFakeVisible = !isFakeVisible;
+      img.style.display = isFakeVisible ? 'block' : 'none';
+    }
+
+    function toggleRealImage() {
+      const img = document.getElementById('realImage');
+      isRealVisible = !isRealVisible;
+      img.style.display = isRealVisible ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+</html>
